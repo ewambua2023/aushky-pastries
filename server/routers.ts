@@ -19,8 +19,10 @@ import {
 
 export const appRouter = router({
   system: systemRouter,
+
   auth: router({
     me: publicProcedure.query((opts) => opts.ctx.user),
+
     logout: publicProcedure.mutation(({ ctx }) => {
       const cookieOptions = getSessionCookieOptions(ctx.req);
       ctx.res.clearCookie(COOKIE_NAME, { ...cookieOptions, maxAge: -1 });
@@ -32,6 +34,7 @@ export const appRouter = router({
     list: publicProcedure
       .input(z.object({ category: z.string().optional() }).optional())
       .query(({ input }) => getAllProducts(input?.category)),
+
     featured: publicProcedure.query(() => getFeaturedProducts()),
   }),
 
@@ -43,6 +46,7 @@ export const appRouter = router({
 
   testimonials: router({
     list: publicProcedure.query(() => getAllTestimonials()),
+
     featured: publicProcedure.query(() => getFeaturedTestimonials()),
   }),
 
@@ -50,6 +54,7 @@ export const appRouter = router({
     list: publicProcedure
       .input(z.object({ category: z.string().optional() }).optional())
       .query(({ input }) => getAllBlogPosts(input?.category)),
+
     bySlug: publicProcedure
       .input(z.object({ slug: z.string() }))
       .query(({ input }) => getBlogPostBySlug(input.slug)),
@@ -73,7 +78,7 @@ export const appRouter = router({
         })
       )
       .mutation(async ({ input }) => {
-        await notifyOwner({
+        const emailSent = await notifyOwner({
           title: `New Contact Message from ${input.name}`,
           content: `
 **Name:** ${input.name}
@@ -85,7 +90,11 @@ export const appRouter = router({
 ${input.message}
           `.trim(),
         });
-        return { success: true };
+
+        return {
+          success: true,
+          emailSent,
+        };
       }),
   }),
 
@@ -112,40 +121,60 @@ ${input.message}
         })
       )
       .mutation(async ({ input }) => {
-        await createOrderInquiry({
-          ...input,
-          estimatedPrice: input.estimatedPrice?.toString(),
-        });
+        let savedToDatabase = true;
+
+        try {
+          await createOrderInquiry({
+            ...input,
+            estimatedPrice: input.estimatedPrice?.toString(),
+          });
+        } catch (error) {
+          savedToDatabase = false;
+          console.warn("[Orders] Failed to save order inquiry to database:", error);
+        }
 
         const priceStr = input.estimatedPrice
           ? `KES ${input.estimatedPrice.toLocaleString()}`
           : "Not specified";
 
-        await notifyOwner({
+        const emailSent = await notifyOwner({
           title: `New Cake Order Inquiry from ${input.customerName}`,
           content: `
 **Customer:** ${input.customerName}
 **Email:** ${input.customerEmail}
 **Phone:** ${input.customerPhone || "Not provided"}
+
 **Occasion:** ${input.occasion || "Not specified"}
 **Cake Size:** ${input.cakeSize || "Not specified"}
 **Flavor:** ${input.cakeFlavor || "Not specified"}
 **Frosting:** ${input.cakeFrosting || "Not specified"}
 **Tiers:** ${input.tiers || "Not specified"}
+**Decorations:** ${input.decorations || "Not specified"}
+**Message on Cake:** ${input.cakeMessage || "None"}
 **Preferred Date:** ${input.preferredDate || "Not specified"}
 **Delivery:** ${input.deliveryType || "Not specified"}
+**Delivery Address:** ${input.deliveryAddress || "Not provided"}
+**Budget:** ${input.budget || "Not specified"}
 **Estimated Price:** ${priceStr}
+
+**Saved to Database:** ${savedToDatabase ? "Yes" : "No - email notification only"}
+
 **Notes:** ${input.additionalNotes || "None"}
           `.trim(),
         });
 
-        return { success: true };
+        return {
+          success: true,
+          savedToDatabase,
+          emailSent,
+        };
       }),
 
     list: protectedProcedure.query(async ({ ctx }) => {
       if (ctx.user.role !== "admin") {
         throw new Error("Unauthorized");
       }
+
       return getAllOrderInquiries();
     }),
   }),
