@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { TRPCError } from "@trpc/server";
 import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
@@ -91,6 +92,14 @@ ${input.message}
           `.trim(),
         });
 
+        if (!emailSent) {
+          throw new TRPCError({
+            code: "INTERNAL_SERVER_ERROR",
+            message:
+              "Your message could not be emailed to Aushky Pastries. Please contact us directly by WhatsApp or phone.",
+          });
+        }
+
         return {
           success: true,
           emailSent,
@@ -162,6 +171,14 @@ ${input.message}
 **Notes:** ${input.additionalNotes || "None"}
           `.trim(),
         });
+
+        if (!emailSent) {
+          throw new TRPCError({
+            code: "INTERNAL_SERVER_ERROR",
+            message:
+              "Your inquiry was received by the website but could not be emailed to Aushky Pastries. Please contact us directly by WhatsApp or phone.",
+          });
+        }
 
         return {
           success: true,
