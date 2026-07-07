@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1782823552199,
+      "tag": "0000_fluffy_nebula",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1782823658044,
+      "tag": "0001_milky_violations",
+      "breakpoints": true
+    }
+  ]
+}
