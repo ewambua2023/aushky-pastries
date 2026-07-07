@@ -141,7 +141,7 @@ export default function Home() {
         <div
           className="absolute inset-0 bg-cover bg-center opacity-25"
           style={{
-            backgroundImage: `url(/images/user-aushky-founder-story.png)`,
+            backgroundImage: `url(/images/aushky-founder-story.png)`,
           }}
         />
         {/* Gradient overlay */}
@@ -326,8 +326,8 @@ export default function Home() {
             >
               <div className="relative rounded-2xl overflow-hidden aspect-[4/5] shadow-2xl">
                 <img
-                  src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80"
-                  alt="Baker at work"
+                  src="/images/aushky-founder-story.png"
+                  alt="Aushky Pastries founder and cake display"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-chocolate/40 to-transparent" />
