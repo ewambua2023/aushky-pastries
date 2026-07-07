@@ -141,7 +141,7 @@ export default function Home() {
         <div
           className="absolute inset-0 bg-cover bg-center opacity-25"
           style={{
-            backgroundImage: `url(/images/user-photo-5_344fe37b.jpg)`,
+            backgroundImage: `url(/images/user-aushky-founder-story)`,
           }}
         />
         {/* Gradient overlay */}
