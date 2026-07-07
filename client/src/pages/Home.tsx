@@ -36,7 +36,7 @@ const PLACEHOLDER_IMAGES: Record<string, string> = {
   seasonal_specials: "https://images.unsplash.com/photo-1606983340126-99ab4feaa64a?w=600&q=80",
 };
 
-const DEFAULT_CAKE_IMG = "/manus-storage/butterfly-cake-enhanced_ea1ab931.png";
+const DEFAULT_CAKE_IMG = "/images/butterfly-cake-enhanced_ea1ab931.png";
 
 const STATIC_FEATURED = [
   {
@@ -45,7 +45,7 @@ const STATIC_FEATURED = [
     category: "wedding_cakes",
     startingPrice: "8500",
     description: "Multi-tiered masterpiece adorned with blue butterflies and gold leaf accents.",
-    imageUrl: "/manus-storage/butterfly-cake-enhanced_ea1ab931.png",
+    imageUrl: "/images/butterfly-cake-enhanced_ea1ab931.png",
   },
   {
     id: 2,
@@ -53,7 +53,7 @@ const STATIC_FEATURED = [
     category: "birthday_cakes",
     startingPrice: "3500",
     description: "Vibrant purple gradient with gold leaf decorations and elegant flowers.",
-    imageUrl: "/manus-storage/purple-gold-cake-enhanced_e21338a9.png",
+    imageUrl: "/images/purple-gold-cake-enhanced_e21338a9.png",
   },
   {
     id: 3,
@@ -61,7 +61,7 @@ const STATIC_FEATURED = [
     category: "cupcakes",
     startingPrice: "1200",
     description: "A dozen handcrafted cupcakes with signature buttercream swirls.",
-    imageUrl: "/manus-storage/bakery-display-enhanced_d3f41d0d.png",
+    imageUrl: "/images/bakery-display-enhanced_d3f41d0d.png",
   },
   {
     id: 4,
@@ -69,7 +69,7 @@ const STATIC_FEATURED = [
     category: "kids_cakes",
     startingPrice: "4200",
     description: "Rich, moist fruit cake loaded with dried fruits and nuts.",
-    imageUrl: "/manus-storage/fruitcake-slice-enhanced_5fbd6524.png",
+    imageUrl: "/images/fruitcake-slice-enhanced_5fbd6524.png",
   },
   {
     id: 5,
@@ -77,7 +77,7 @@ const STATIC_FEATURED = [
     category: "wedding_cakes",
     startingPrice: "9500",
     description: "Elegant multi-tier wedding cake with custom decorations.",
-    imageUrl: "/manus-storage/user-photo-1_0ba45c18.jpg",
+    imageUrl: "/images/user-photo-1_0ba45c18.jpg",
   },
   {
     id: 6,
@@ -85,7 +85,7 @@ const STATIC_FEATURED = [
     category: "birthday_cakes",
     startingPrice: "3800",
     description: "Beautifully designed cakes for all your special occasions.",
-    imageUrl: "/manus-storage/user-photo-3_3e21cd14.jpg",
+    imageUrl: "/images/user-photo-3_3e21cd14.jpg",
   },
 ];
 
@@ -141,7 +141,7 @@ export default function Home() {
         <div
           className="absolute inset-0 bg-cover bg-center opacity-25"
           style={{
-            backgroundImage: `url(/manus-storage/user-photo-5_344fe37b.jpg)`,
+            backgroundImage: `url(/images/user-photo-5_344fe37b.jpg)`,
           }}
         />
         {/* Gradient overlay */}

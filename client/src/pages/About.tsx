@@ -14,7 +14,7 @@ export default function About() {
       <section className="relative pt-32 pb-20 bg-chocolate text-white overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-20"
-          style={{ backgroundImage: "url(/manus-storage/user-photo-2_4bd9f3c5.jpg)" }}
+          style={{ backgroundImage: "url(/images/user-photo-2_4bd9f3c5.jpg)" }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-chocolate/80" />
         <div className="container relative z-10 text-center">
@@ -72,7 +72,7 @@ export default function About() {
             >
               <div className="rounded-2xl overflow-hidden shadow-2xl aspect-[4/5]">
                 <img
-                  src="/manus-storage/user-photo-5_344fe37b.jpg"
+                  src="/images/user-photo-5_344fe37b.jpg"
                   alt="Baker at work"
                   className="w-full h-full object-cover"
                 />
@@ -195,7 +195,7 @@ export default function About() {
             >
               <div className="rounded-2xl overflow-hidden shadow-2xl aspect-square">
                 <img
-                  src="/manus-storage/user-photo-5_344fe37b.jpg"
+                  src="/images/user-photo-5_344fe37b.jpg"
                   alt="The Baker"
                   className="w-full h-full object-cover"
                 />
